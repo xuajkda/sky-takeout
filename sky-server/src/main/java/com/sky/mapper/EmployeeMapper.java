@@ -33,4 +33,10 @@ public interface EmployeeMapper {
      */
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 
+    /**
+     * 启用禁用员工账号 因为是动态的，同样在xml里编写SQL语句
+     * @param employee
+     */
+    void update(Employee employee);
+
 }
