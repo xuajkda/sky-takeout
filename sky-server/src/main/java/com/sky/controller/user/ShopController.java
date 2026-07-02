@@ -26,7 +26,7 @@ public class ShopController {
     @GetMapping("/status")
     @ApiOperation("获取店铺的营业状态")
     public Result<Integer> getStatus(){
-        Integer status = (Integer)redisTemplate.opsForValue().get("KEY");
+        Integer status = (Integer)redisTemplate.opsForValue().get(KEY);
         log.info("获取店铺的营业状态为:{}", status == 1 ? "营业中" : "打烊中");
         return Result.success(status);
     }
