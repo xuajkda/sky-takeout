@@ -9,8 +9,8 @@ sky:
 
   alioss:
     endpoint: oss-cn-beijing.aliyuncs.com
-    access-key-id: YOUR_ACCESS_KEY_HERE
-    access-key-secret: YOUR_SECRET_KEY_HERE
+    access-key-id: yourKeyId
+    access-key-secret:  yourSecret
     bucket-name: java-ai-cwx1613191404
   redis:
     host: localhost
