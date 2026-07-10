@@ -181,7 +181,7 @@ public class OrderServiceImpl implements OrderService {
             for (Orders orders : page){
                 Long orderId = orders.getId();//订单的ID
                 //查询订单明细
-                List<OrderDetail> orderDetails = orderMapper.getByOrderId(orderId);
+                List<OrderDetail> orderDetails = orderDetailMapper.getByOrderId(orderId);
 
                 OrderVO orderVO = new OrderVO();
                 BeanUtils.copyProperties(orders, orderVO);
@@ -191,5 +191,24 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         return new PageResult(page.getTotal(), list);
+    }
+
+    /**
+     * 根据订单id查询订单详情
+     * @param id
+     * @return
+     */
+    public OrderVO details(Long id) {
+        // 根据id查询订单
+        Orders orders = orderMapper.getById(id);
+        // 查询该订单对应的菜品/套餐明细 --> 在details里
+        List<OrderDetail> orderDetailList = orderDetailMapper.getByOrderId(orders.getId());
+
+        // 将该订单及其详情封装到OrderVO并返回
+        OrderVO orderVO = new OrderVO();
+        BeanUtils.copyProperties(orders, orderVO);
+        orderVO.setOrderDetailList(orderDetailList);
+
+        return orderVO;
     }
 }
